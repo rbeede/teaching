@@ -1,0 +1,8 @@
+seq -w 1 1800 | xargs --max-args=1 -P 15 -I{}   /c/Program\ Files/Python39/python.exe random_image_final.py   3840 2160 OUTPUT/random_image-{}.png
+
+
+ffmpeg -framerate 30 -i random_image-%04d.png -c:v copy output-straight-copy.mkv
+
+
+# alternative
+ffmpeg -framerate 30 -i random_image-%04d.png -c:v libx264rgb -crf 0 output-x264rgb.mp4
