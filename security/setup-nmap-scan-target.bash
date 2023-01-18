@@ -5,7 +5,16 @@
 set -x
 
 
-pip install paramiko
+# Ubuntu tested
+apt-get update
+apt-get install -y curl netcat git
+
+##################################
+
+apt-get install -y python3 python3-paramiko python3-pip
+
+# pip install paramiko
+
 
 cd /tmp/
 
