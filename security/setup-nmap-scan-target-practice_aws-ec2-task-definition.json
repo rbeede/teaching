@@ -1,0 +1,60 @@
+{
+    "containerDefinitions": [
+        {
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/ecs/nmap-scan-target-practice",
+                    "awslogs-stream-prefix": "ecs",
+
+
+
+                    "awslogs-region": "us-west-2"
+
+
+
+
+                }
+            },
+            "portMappings": [
+                {
+                    "protocol": "tcp",
+                    "containerPort": 80
+                },
+                {
+                    "protocol": "tcp",
+                    "containerPort": 3389
+                },
+                {
+                    "protocol": "tcp",
+                    "containerPort": 22
+                }
+            ],
+            "command": [
+                "/bin/bash",
+                "-c",
+                "cd /tmp/ && apt-get -qq update && apt-get install -y curl && curl -OL 'https://raw.githubusercontent.com/rbeede/teaching/main/security/setup-nmap-scan-target.bash' && /bin/bash /tmp/setup-nmap-scan-target.bash && sleep 5d"
+            ],
+            "image": "public.ecr.aws/docker/library/ubuntu:22.04",
+            "essential": true,
+            "name": "port-simulator"
+        }
+    ],
+
+
+
+
+    "family": "nmap-scan-target-practice",
+    "executionRoleArn": "ecsTaskExecutionRole",
+
+
+
+
+    "memory": "512",
+    "cpu": "256",
+
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "networkMode": "awsvpc"
+}
