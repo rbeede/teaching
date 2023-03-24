@@ -5,7 +5,7 @@ Based off of https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_AWS
 
 
 Uses default cluster
-`aws ecs create-cluster1
+`aws ecs create-cluster1`
 
 
 `aws ecs register-task-definition --cli-input-json file://setup-nmap-scan-target-practice_aws-ec2-task-definition.json`
