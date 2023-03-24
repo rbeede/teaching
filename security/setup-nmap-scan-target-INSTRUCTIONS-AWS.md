@@ -33,8 +33,13 @@ aws ecs describe-tasks --tasks arn:aws:ecs:us-west-2:############:task/INSERT/HE
 aws ecs describe-tasks --tasks arn:aws:ecs:us-west-2:############:task/INSERT/HERE | grep 'eni-'
 ```
 
-Get the public IP address
+Get the public IP address of the container instance
 ```
 aws ec2 describe-network-interfaces --network-interface-id  eni-INSERT_HERE
 aws ec2 describe-network-interfaces --network-interface-id  eni-INSERT_HERE | grep PublicDnsName
+```
+
+Alternative method of IP address collection
+```
+aws ec2 describe-network-interfaces --output text --query 'NetworkInterfaces[].[Association.PublicIp,Ipv6Addresses]' | grep -v None
 ```
